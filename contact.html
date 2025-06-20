@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Alexey Gorodilov</title>
+    <link rel="stylesheet" href="files/styles.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="logo.png" alt="Logo" class="logo-img">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="contact-content">
+            <div class="contact-intro">
+                <h1>Get In Touch</h1>
+                <p>Ready to discuss your project or have questions? I'd love to hear from you.</p>
+            </div>
+
+            <div class="contact-info">
+                <div class="contact-details">
+                    <h2>Contact Information</h2>
+                    <div class="contact-item">
+                        <h3>Email</h3>
+                        <div id="email-section">
+                            <p class="email-protected">Complete the verification below to reveal email address</p>
+                            <div class="g-recaptcha" data-sitekey="6LfQdGcrAAAAAID6QSSJXLmpbJZ8AjX8bwyVs6Bq" data-callback="onRecaptchaSuccess"></div>
+                            <p id="email-revealed" class="email-address" style="display: none;">alexeigor@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="social-links-section">
+                    <h3>Connect With Me</h3>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/agorodilov/" target="_blank">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <h3>Let's Build Something Great Together</h3>
+            <p>Looking forward to hearing about your project</p>
+        </div>
+    </footer>
+
+    <script>
+        function onRecaptchaSuccess(token) {
+            // Hide the reCAPTCHA and protection message
+            document.querySelector('.g-recaptcha').style.display = 'none';
+            document.querySelector('.email-protected').style.display = 'none';
+            
+            // Show the email address
+            document.getElementById('email-revealed').style.display = 'block';
+            
+            // Optional: Show a success message
+            const successMsg = document.createElement('p');
+            successMsg.textContent = 'Verification successful!';
+            successMsg.style.color = '#28a745';
+            successMsg.style.fontWeight = '600';
+            successMsg.style.marginBottom = '0.5rem';
+            document.getElementById('email-section').insertBefore(successMsg, document.getElementById('email-revealed'));
+        }
+
+        // Optional: Handle reCAPTCHA expiry
+        function onRecaptchaExpire() {
+            // Hide email if reCAPTCHA expires
+            document.getElementById('email-revealed').style.display = 'none';
+            document.querySelector('.g-recaptcha').style.display = 'block';
+            document.querySelector('.email-protected').style.display = 'block';
+            
+            // Remove success message if it exists
+            const successMsg = document.querySelector('#email-section p[style*="color: #28a745"]');
+            if (successMsg) {
+                successMsg.remove();
+            }
+        }
+    </script>
+</body>
+</html>
