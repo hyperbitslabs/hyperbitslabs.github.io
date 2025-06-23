@@ -1,0 +1,9 @@
+plugins:
+  - jekyll-optional-front-matter
+
+include:
+  - index.html
+  - contact.html  
+  - services.html
+
+permalink: pretty
